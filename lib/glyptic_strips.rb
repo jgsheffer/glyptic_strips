@@ -4,8 +4,8 @@ require 'cucumber'
 # Main class of Glyptic Strips
 #
 
-# = Setting up your project 
-# 
+# = Setting up your project
+#
 # = Example
 #
 #   create_gif(sceanrio, './myproj/test_reports/screenshots', @browser, :watir, 6)
@@ -23,6 +23,10 @@ class GlypticStrips
 #
 
     def create_strip(scenario, png_folder, driver, driver_type, number_in_row)
+      create_strip(scenario, png_folder, png_folder, driver, driver_type, number_in_row)
+    end
+
+    def create_strip(scenario, png_folder, html_location, driver, driver_type, number_in_row)
         @@scenario_index = 0
         final_strip =  ''
         take_strip_frame(driver, driver_type, png_folder) if(scenario.failed?)
@@ -43,10 +47,11 @@ class GlypticStrips
                 raise 'There are more screenshots than steps.  Check console output for more details'
             end
             step_name = scenario_array[img_index].name.to_s
+            file_name = file_name.to_s.gsub(/.*\//,"")
             if (scenario.failed? && (num_of_images - 1 == img_index))
-                image_html = get_image_html(file_name, "#{img_index+1}: #{step_name}", @@red, number_in_row)
+                image_html = get_image_html("#{html_location}/#{file_name}", "#{img_index+1}: #{step_name}", @@red, number_in_row)
             else
-                image_html = get_image_html(file_name, "#{img_index+1}: #{step_name}", @@green, number_in_row)
+                image_html = get_image_html("#{html_location}/#{file_name}", "#{img_index+1}: #{step_name}", @@green, number_in_row)
             end
             puts
             final_strip = final_strip+image_html

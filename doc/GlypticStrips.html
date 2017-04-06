@@ -6,7 +6,7 @@
 <title>
   Class: GlypticStrips
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="class_list.html?1"></iframe>
+      <iframe id="nav" src="class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="class_list.html"></iframe>
 
       <div id="content"><h1>Class: GlypticStrips
   
@@ -102,7 +104,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<h1 id="label-Setting+up+your+project+">Setting up your project </h1>
+<h1 id="label-Setting+up+your+project">Setting up your project</h1>
 
 <h1 id="label-Example">Example</h1>
 
@@ -168,7 +170,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create_strip-instance_method" title="#create_strip (instance method)">#<strong>create_strip</strong>(scenario, png_folder, driver, driver_type, number_in_row)  &#x21d2; Object </a>
+      <a href="#create_strip-instance_method" title="#create_strip (instance method)">#<strong>create_strip</strong>(scenario, png_folder, html_location, driver, driver_type, number_in_row)  &#x21d2; Object </a>
     
 
     
@@ -275,7 +277,7 @@ location.</p>
       <div class="method_details first">
   <h3 class="signature first" id="create_strip-instance_method">
   
-    #<strong>create_strip</strong>(scenario, png_folder, driver, driver_type, number_in_row)  &#x21d2; <tt>Object</tt> 
+    #<strong>create_strip</strong>(scenario, png_folder, html_location, driver, driver_type, number_in_row)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -301,81 +303,13 @@ creates an html formatted string with them layed out in rows</p>
 
 25
 26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61</pre>
+27</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_strip'>create_strip</span><span class='lparen'>(</span><span class='id identifier rubyid_scenario'>scenario</span><span class='comma'>,</span> <span class='id identifier rubyid_png_folder'>png_folder</span><span class='comma'>,</span> <span class='id identifier rubyid_driver'>driver</span><span class='comma'>,</span> <span class='id identifier rubyid_driver_type'>driver_type</span><span class='comma'>,</span> <span class='id identifier rubyid_number_in_row'>number_in_row</span><span class='rparen'>)</span>
-    <span class='cvar'>@@scenario_index</span> <span class='op'>=</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_final_strip'>final_strip</span> <span class='op'>=</span>  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_take_strip_frame'>take_strip_frame</span><span class='lparen'>(</span><span class='id identifier rubyid_driver'>driver</span><span class='comma'>,</span> <span class='id identifier rubyid_driver_type'>driver_type</span><span class='comma'>,</span> <span class='id identifier rubyid_png_folder'>png_folder</span><span class='rparen'>)</span> <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_scenario'>scenario</span><span class='period'>.</span><span class='id identifier rubyid_failed?'>failed?</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_dir_contents'>dir_contents</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_png_folder'>png_folder</span><span class='embexpr_end'>}</span><span class='tstring_content'>/scenario-</span><span class='embexpr_beg'>#{</span><span class='cvar'>@@scenario_number</span><span class='embexpr_end'>}</span><span class='tstring_content'>-image-*.png</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
-    <span class='id identifier rubyid_img_index'>img_index</span> <span class='op'>=</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_num_of_images'>num_of_images</span> <span class='op'>=</span> <span class='id identifier rubyid_dir_contents'>dir_contents</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-    <span class='id identifier rubyid_scenario_index'>scenario_index</span> <span class='op'>=</span> <span class='id identifier rubyid_get_correct_scenario_index'>get_correct_scenario_index</span><span class='lparen'>(</span><span class='id identifier rubyid_scenario'>scenario</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_scenario_array'>scenario_array</span> <span class='op'>=</span> <span class='id identifier rubyid_scenario'>scenario</span><span class='period'>.</span><span class='id identifier rubyid_feature'>feature</span><span class='period'>.</span><span class='id identifier rubyid_feature_elements'>feature_elements</span><span class='lbracket'>[</span><span class='id identifier rubyid_scenario_index'>scenario_index</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:raw_steps</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
-    <span class='comment'># Add the step description in red or green text to each image frame
-</span>    <span class='id identifier rubyid_dir_contents'>dir_contents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file_name'>file_name</span><span class='op'>|</span>
-        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_scenario_array'>scenario_array</span><span class='lbracket'>[</span><span class='id identifier rubyid_img_index'>img_index</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-            <span class='id identifier rubyid_puts'>puts</span> <span class='cvar'>@@divider</span>
-            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:::::::::::::::::: There are more screenshots than steps :::::::::::::::::::::::::::::::::::::</span><span class='tstring_end'>&quot;</span></span>
-            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::::: Error :::::: Strips currently doesn&#39;t support background :::::::::::::::::::::::::::::::</span><span class='tstring_end'>&quot;</span></span>
-            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:::::::::::::::::: If you don&#39;t have backgrounds then clear our your screenshots dir :::::::::</span><span class='tstring_end'>&quot;</span></span>
-            <span class='id identifier rubyid_puts'>puts</span> <span class='cvar'>@@divider</span>
-            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SCREENSHOTS DIR: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_png_folder'>png_folder</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span>
-            <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>There are more screenshots than steps.  Check console output for more details</span><span class='tstring_end'>&#39;</span></span>
-        <span class='kw'>end</span>
-        <span class='id identifier rubyid_step_name'>step_name</span> <span class='op'>=</span> <span class='id identifier rubyid_scenario_array'>scenario_array</span><span class='lbracket'>[</span><span class='id identifier rubyid_img_index'>img_index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
-        <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_scenario'>scenario</span><span class='period'>.</span><span class='id identifier rubyid_failed?'>failed?</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_num_of_images'>num_of_images</span> <span class='op'>-</span> <span class='int'>1</span> <span class='op'>==</span> <span class='id identifier rubyid_img_index'>img_index</span><span class='rparen'>)</span><span class='rparen'>)</span>
-            <span class='id identifier rubyid_image_html'>image_html</span> <span class='op'>=</span> <span class='id identifier rubyid_get_image_html'>get_image_html</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_img_index'>img_index</span><span class='op'>+</span><span class='int'>1</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_step_name'>step_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='cvar'>@@red</span><span class='comma'>,</span> <span class='id identifier rubyid_number_in_row'>number_in_row</span><span class='rparen'>)</span>
-        <span class='kw'>else</span>
-            <span class='id identifier rubyid_image_html'>image_html</span> <span class='op'>=</span> <span class='id identifier rubyid_get_image_html'>get_image_html</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_img_index'>img_index</span><span class='op'>+</span><span class='int'>1</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_step_name'>step_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='cvar'>@@green</span><span class='comma'>,</span> <span class='id identifier rubyid_number_in_row'>number_in_row</span><span class='rparen'>)</span>
-        <span class='kw'>end</span>
-        <span class='id identifier rubyid_puts'>puts</span>
-        <span class='id identifier rubyid_final_strip'>final_strip</span> <span class='op'>=</span> <span class='id identifier rubyid_final_strip'>final_strip</span><span class='op'>+</span><span class='id identifier rubyid_image_html'>image_html</span>
-          <span class='kw'>if</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_img_index'>img_index</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>%</span><span class='id identifier rubyid_number_in_row'>number_in_row</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span>
-            <span class='id identifier rubyid_final_strip'>final_strip</span> <span class='op'>=</span> <span class='id identifier rubyid_final_strip'>final_strip</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;/br&gt;</span><span class='tstring_end'>&#39;</span></span>
-        <span class='kw'>end</span>
-        <span class='id identifier rubyid_img_index'>img_index</span> <span class='op'>=</span> <span class='id identifier rubyid_img_index'>img_index</span> <span class='op'>+</span> <span class='int'>1</span>
-
-    <span class='kw'>end</span>
-    <span class='cvar'>@@scenario_number</span> <span class='op'>=</span> <span class='cvar'>@@scenario_number</span> <span class='op'>+</span> <span class='int'>1</span>
-    <span class='id identifier rubyid_final_strip'>final_strip</span>
+  <span class='id identifier rubyid_create_strip'>create_strip</span><span class='lparen'>(</span><span class='id identifier rubyid_scenario'>scenario</span><span class='comma'>,</span> <span class='id identifier rubyid_png_folder'>png_folder</span><span class='comma'>,</span> <span class='id identifier rubyid_png_folder'>png_folder</span><span class='comma'>,</span> <span class='id identifier rubyid_driver'>driver</span><span class='comma'>,</span> <span class='id identifier rubyid_driver_type'>driver_type</span><span class='comma'>,</span> <span class='id identifier rubyid_number_in_row'>number_in_row</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -408,11 +342,6 @@ creates an html formatted string with them layed out in rows</p>
       <pre class="lines">
 
 
-86
-87
-88
-89
-90
 91
 92
 93
@@ -421,10 +350,15 @@ creates an html formatted string with them layed out in rows</p>
 96
 97
 98
-99</pre>
+99
+100
+101
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_correct_scenario_index'>get_correct_scenario_index</span><span class='lparen'>(</span><span class='id identifier rubyid_scenario'>scenario</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_expected_name'>expected_name</span> <span class='op'>=</span> <span class='id identifier rubyid_scenario'>scenario</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -471,13 +405,13 @@ creates an html formatted string with them layed out in rows</p>
       <pre class="lines">
 
 
-104
-105
-106
-107</pre>
+109
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_image_html'>get_image_html</span><span class='lparen'>(</span><span class='id identifier rubyid_image_location'>image_location</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='comma'>,</span> <span class='id identifier rubyid_number_in_row'>number_in_row</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_image_percent'>image_percent</span> <span class='op'>=</span> <span class='int'>90</span><span class='op'>/</span><span class='id identifier rubyid_number_in_row'>number_in_row</span>
@@ -515,11 +449,6 @@ location</p>
       <pre class="lines">
 
 
-67
-68
-69
-70
-71
 72
 73
 74
@@ -529,10 +458,15 @@ location</p>
 78
 79
 80
-81</pre>
+81
+82
+83
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/glyptic_strips.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_take_strip_frame'>take_strip_frame</span><span class='lparen'>(</span><span class='id identifier rubyid_driver'>driver</span><span class='comma'>,</span> <span class='id identifier rubyid_driver_type'>driver_type</span><span class='comma'>,</span> <span class='id identifier rubyid_png_folder'>png_folder</span><span class='rparen'>)</span>
     <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_driver_type'>driver_type</span> <span class='op'>==</span> <span class='symbol'>:appium</span><span class='rparen'>)</span>
@@ -559,9 +493,9 @@ location</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 14 00:12:23 2017 by
+  Generated on Thu Apr  6 14:49:33 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.6).
+  0.9.5 (ruby-2.3.1).
 </div>
 
     </div>
